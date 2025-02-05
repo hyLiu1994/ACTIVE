@@ -25,21 +25,6 @@ def calculate_mbr_area(positions):
     mbr = format_mbr((latitudes_min, longitudes_min, latitudes_max, longitudes_max))
     return mbr, abs(latitudes_min-latitudes_max) * abs(longitudes_min - longitudes_max)
 
-def baselines_candidate_process(candidate_traj):
-    def merge_intervals(intervals):
-        intervals.sort(key=lambda x: x[0])
-        merged = []
-        for interval in intervals:
-            if not merged or merged[-1][1] < interval[0] - 1:
-                merged.append(interval)
-            else:
-                merged[-1][1] = max(merged[-1][1], interval[1])
-        return merged
-    for ship_id in candidate_traj:
-        candidate_traj[ship_id] = merge_intervals(candidate_traj[ship_id])
-        # print("candidate_traj", candidate_traj[ship_id])
-    return candidate_traj
-
 #region Segment Generate Module
 def SegmentGenerate(positions, minlen_seq, maxlen_seq):
     n = len(positions)

@@ -10,8 +10,12 @@
 
 .DS_Store
 /ExpScripts/*
-/Data/*
-/Result/*
+/Data/Index/*
+/Data/ProcessedData/*
+/Data/RawData/*
+/Result/Figure/*
+/Result/**/
+/Result/*.csv
 /Figure/*
 /__pycache__/*
 /.vscode/*

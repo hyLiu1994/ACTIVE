@@ -11,12 +11,12 @@ from utils.utils import split_segment_from_traj_data
 # Import custom modules
 from utils.HyperParameterManagementModule import load_hypermater
 from utils.DataProcessModule import load_ais_dataset
-from utils.utils import baselines_candidate_process
 from Index.IndexWrapper import build_Index, search_candidate_traj, search_knn_candidate_traj
-from Measure.MeasureWrap import find_topk_traj_offline, find_topk_traj_online
+from Measure.MeasureWrap import find_topk_traj_online
 
 def continue_similarity_traj_search(current_trajectory_info, DataIndex, traj_data, OTRD_knowledge, args):
     raw_traj_id, current_point, current_traj, current_target, next_point = current_trajectory_info
+    OTRD_knowledge['destination_pos'] = current_target
     
     #region Step 1: Measure search_knn time and memory, and initialize 
     knn_start_time = time.time()
@@ -32,16 +32,7 @@ def continue_similarity_traj_search(current_trajectory_info, DataIndex, traj_dat
     query_memory = 0
     #endregion
 
-    if args.index_type not in ['SVTI']:
-        candidate_traj, memory_usage = search_candidate_traj(DataIndex, current_point, args)
-        candidate_traj = baselines_candidate_process(candidate_traj)
-        print(f"Number of candidate trajectories: {len(candidate_traj)}")
-        
-        selected_traj_ids = find_topk_traj_offline(
-            current_traj, candidate_traj, traj_data, args
-        )
-        
-    elif args.model_type == 'ACTIVE':
+    if args.model_type == 'ACTIVE':
         candidate_traj_current, memory_usage = search_candidate_traj(DataIndex, current_point, args)
         candidate_traj_Info = {
             key: (0, end_segId)

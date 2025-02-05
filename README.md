@@ -2,14 +2,10 @@
 This repository is the official implementation of the real-time continuous trajectory similarity search method for vessels.
 
 ## Abstract
-Trajectory similarity search has attracted significant attention, especially in applications such as transportation, maritime navigation, and traffic monitoring, where identifying patterns in movement is critical. Existing studies typically focus on finding similarities between entire trajectories using retrospective analysis. However, these methods become less effective when applied to real-time scenarios, where continuous and evolving trajectory comparisons are required as new data is constantly generated. 
-
-
-We address these limitations by proposing a real-time continuous trajectory similarity search method for vessels (ACTIVE).
-We introduce a novel similarity measure, object-trajectory real-time distance (OTRD), that places greater emphasis on the future trend of moving objects, allowing for more predictive and forward-looking comparisons. 
-To optimize performance, we develop a segment-based vessel trajectory index (SVTI) structure that organizes historical trajectories into smaller and manageable segments, facilitating faster and more efficient similarity calculations. 
-Next, we design an efficient continuous similar trajectory search (CSTS) algorithm and implement a variety of pruning strategies to reduce unnecessary computations during the similarity calculation and the continuous search process, further improving the CSTS's efficiency and scalability. 
-Extensive experiments on two large real-world AIS datasets demonstrate that CSTS significantly outperforms state-of-the-art methods. For index **construction**, CSTS reduces costs by a factor of 100 in terms of time and size compared to four state-of-the-arts. For search, CSTS outperforms six state-of-the-arts by up to 70% in terms of query time and 60% in terms of hit rate.
+Publicly available vessel trajectory data is emitted continuously from the global AIS system. Continuous trajectory similarity search on this data has applications in, e.g., maritime navigation and safety.
+Existing proposals typically assume an offline setting and focus on finding similarities between complete trajectories. Such proposals are less effective when applied to online scenarios, where similarity comparisons must be performed continuously as new trajectory data arrives and trajectories evolve.
+We therefore propose a re$\underline{\textbf{a}}$l-time $\underline{\textbf{c}}$ontinuous $\underline{\textbf{t}}$rajectory s$\underline{\textbf{i}}$milarity search method for $\underline{\textbf{ve}}$ssels  ($\texttt{ACTIVE}$). We introduce a novel similarity measure, object-trajectory real-time distance, that emphasizes the anticipated future movement trends of vessels, enabling more predictive and forward-looking comparisons. Next, we propose a segment-based vessel trajectory index structure that organizes historical trajectories into smaller and manageable segments, facilitating accelerated similarity computations. Leveraging this index, we propose an efficient continuous similar trajectory search ($\texttt{CSTS}$) algorithm together with a variety of search space pruning strategies that reduce unnecessary computations during the continuous similarity search, thereby further improving efficiency. 
+Extensive experiments on two large real-world AIS datasets offer evidence that $\texttt{ACTIVE}$ is capable of outperforming state-of-the-art methods considerably. $\texttt{ACTIVE}$ significantly reduces index construction costs and index size while achieving a 70\% reduction in terms of query time and a 60\% increase in terms of hit rate.
 
 ## Environment Setting
 ```bash

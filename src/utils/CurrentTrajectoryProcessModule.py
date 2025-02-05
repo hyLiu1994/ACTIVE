@@ -30,7 +30,7 @@ def get_current_trajectory_info(traj_idx, timestamp, traj_data, args):
 
 def hyperparameter_CurrentTrajectoryProcess(parser):
     parser.add_argument("--target_trajectory_list", type=list, default=[]) 
-    parser.add_argument("--query_traj_num", type=int, default=30)
+    parser.add_argument("--query_traj_num", type=int, default=2000)
     parser.add_argument("--continuous_length", type=int, default=10)
     parser.add_argument("--query_range", type=float, default=0.000000125)
     parser.add_argument("--query_length", type=int, default=10)
